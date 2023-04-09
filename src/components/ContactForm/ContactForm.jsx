@@ -18,7 +18,7 @@ const initialsValues = {
 
 const FormSchema = yup.object().shape({
   name: yup.string().min(2).required(),
-   number: yup.string().min(13).max(13).phone('UA').required(),
+  number: yup.string().min(13).max(13).phone('UA').required(),
 });
 
 export default function ContactForm({ onSubmitForm, contacts }) {

@@ -12,6 +12,22 @@ export default class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const savedContacts = JSON.parse(localStorage.getItem('saved_contacts'));
+    if (savedContacts) {
+      this.setState({ contacts: savedContacts });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+
+    if (nextContacts !== prevContacts) {
+      localStorage.setItem('saved_contacts', JSON.stringify(nextContacts));
+    }
+  }
+
   formSubmitHandler = newContact => {
     this.setState(prevState => ({
       contacts: [
